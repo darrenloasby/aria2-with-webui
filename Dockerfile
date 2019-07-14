@@ -9,6 +9,12 @@ RUN apk update && \
 	mkdir -p /data && \
 	apk add --no-cache --update aria2 && \
 	apk add git && \
+	apk add python3 && \
+	apk add python3-dev && \
+	apk add ffmpeg && \
+	apk add ruby && \
+	apk add ruby-dev && \
+	apk add ruby-bundler && \
 	git clone https://github.com/ziahamza/webui-aria2 /aria2-webui && \
     rm /aria2-webui/.git* -rf && \
     apk del git && \
@@ -24,7 +30,6 @@ WORKDIR /
 VOLUME ["/data"]
 VOLUME ["/conf"]
 EXPOSE 6800
-EXPOSE 80
 EXPOSE 8080
 
 CMD ["/conf-copy/start.sh"]
