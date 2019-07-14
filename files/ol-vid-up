@@ -9,15 +9,15 @@ file = File.new(vid)
 sha1 = Digest::SHA1.file vid
 name = Zaru.sanitize!(File.basename(vid,".*").gsub(/[^0-9A-Z]/i, ' ')).humanize.titleize
 puts "Preparing #{name} /"
-openload    = OpenLoad.new(ENV['OL_ID'],ENV['OL_KEY'])
+openload = OpenLoad.new(ENV['OL_ID'],ENV['OL_KEY'])
 y = openload.upload_link(folder = nil, sha1 = sha1, httponly = true)
 
 RestClient.post(y.result['url'], {:file1 => file}) do |response, request, result|
     case response.code
     when 200
-    puts " Openload Success" if File.delete(vid)
+        puts " Openload Success" if File.delete(vid)
     else
-    puts " Openload Error"	    
+        puts " Openload Error"	    
     end
     puts "<br/>"
     response.return!
