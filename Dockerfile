@@ -2,6 +2,7 @@ FROM alpine:edge
 
 MAINTAINER xujinkai <jack777@xujinkai.net>
 
+
 RUN apk update && \
 	apk add --no-cache --update bash && \
 	mkdir -p /conf && \
@@ -19,17 +20,20 @@ RUN apk update && \
     rm /aria2-webui/.git* -rf && \
     apk del git && \
 	apk add --update darkhttpd
-
+	
 ADD files/start.sh /conf-copy/start.sh
 ADD files/aria2.conf /conf-copy/aria2.conf
 ADD files/on-complete.sh /conf-copy/on-complete.sh
+ADD Gemfile /aria2-webui/Gemfile
 
-RUN chmod +x /conf-copy/start.sh
+RUN chmod +x /conf-copy/start.sh && \
+    bundle install --gemfile /aria2-webui/Gemfile
 
 WORKDIR /
 VOLUME ["/data"]
 VOLUME ["/conf"]
 EXPOSE 6800
+EXPOSE 8000
 EXPOSE 8080
 
 CMD ["/conf-copy/start.sh"]
