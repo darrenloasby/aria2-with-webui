@@ -17,7 +17,10 @@ RUN apk update && \
 	apk add ruby-dev && \
 	apk add ruby-bundler && \
 	git clone https://github.com/ziahamza/webui-aria2 /aria2-webui && \
+	git clone https://github.com/c0decracker/video-splitter.git /usr/lib/video-splitter && \
     rm /aria2-webui/.git* -rf && \
+    rm /usr/lib/video-splitter/.git* -rf && \
+    rm /usr/lib/video-splitter/examples -rf && \
     apk del git && \
 	apk add --update darkhttpd
 	
@@ -27,6 +30,8 @@ ADD files/on-complete.sh /conf-copy/on-complete.sh
 ADD Gemfile /aria2-webui/Gemfile
 
 RUN chmod +x /conf-copy/start.sh && \
+    ln -s -t /bin/ /usr/lib/video-splitter/ffmpeg-split.py && \
+    chmod +x /bin/ffmpeg-split.py && \
     bundle install --gemfile /aria2-webui/Gemfile
 
 WORKDIR /
