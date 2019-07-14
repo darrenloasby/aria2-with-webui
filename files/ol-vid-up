@@ -15,7 +15,7 @@ y = openload.upload_link(folder = nil, sha1 = sha1, httponly = true)
 RestClient.post(y.result['url'], {:file1 => file}) do |response, request, result|
     case response.code
     when 200
-        puts " Openload Success" if File.delete(vid)
+        puts " Openload Success"
     else
         puts " Openload Error"	    
     end
