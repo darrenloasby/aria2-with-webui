@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'aria2_driver'
+require 'active_support/inflector'
+gid = ARGV[0]
+aria2 = Aria2Driver::JsonRpc::Client.new('localhost', {port: '6800', scheme: 'http', token: ENV['SECRET']})
+puts aria2.tell_status(params:[gid]).result['bittorrent']['info']['name']

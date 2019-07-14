@@ -10,7 +10,6 @@ if [ ! -f /conf/on-complete.sh ]; then
 fi
 
 chmod +x /conf/on-complete.sh
-chmod +x /conf/ol-vid-up
 touch /conf/aria2.session
 
 darkhttpd /aria2-webui/docs --port 8000 &
