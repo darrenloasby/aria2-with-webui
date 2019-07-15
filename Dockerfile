@@ -17,6 +17,7 @@ RUN apk update && \
 	apk add ruby-nokogiri && \
         apk add ruby-bigdecimal && \
         apk add ruby-bundler && \
+        apk add ncftp && \
 	git clone https://github.com/ziahamza/webui-aria2 /aria2-webui && \
     rm /aria2-webui/.git* -rf && \
     apk del git && \
