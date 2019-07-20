@@ -35,7 +35,7 @@ else
       echo "DIR " "$DIR" '<br/>' >> "$LOG"
       REMOTEDIR=$(echo "$SRC" | cut -d "/" -f 4)
       #/usr/bin/lftp -e "open; mirror -R \"${DIR}\" \"/$REMOTEDIR}\"; quit" -u ${OL_ID},${OL_KEY} ftp.openload.co
-      ncftpput -V -m -R -u "$OL_ID" -p "$OL_KEY" ftp.openload.co "/$REMOTEDIR" "$DIR/*" >>"$LOG" 2>&1
+      ncftpput -DD -V -m -R -u "$OL_ID" -p "$OL_KEY" ftp.openload.co "/$REMOTEDIR" "$DIR/." >>"$LOG" 2>&1
       #lftp -c "open -e \"mirror -R -i '\.(avi|mp4|3gp|mpeg|mov|flv|f4v|wmv|mkv|webm|vob|rm|rmvb|m4v|mpg|ogv|ts|m2ts|mts)$' \"$DIR\" \"/$REMOTEDIR\"\" ftp://39d3e827b4f69f04:nfyz9Esw@ftp.openload.com"
      # for f in $(find "$DIR" -iname '*.avi' -or -iname '*.mp4' -or -iname '*.3gp' -or -iname '*.mpeg' -or -iname '*.mov' -or -iname '*.flv' -or -iname '*.f4v' -or -iname '*.wmv' -or -iname '*.mkv' -or -iname '*.webm' -or -iname '*.vob' -or -iname '*.rm' -or -iname '*.rmvb' -or -iname '*.m4v' -or -iname '*.mpg' -or -iname '*.ogv' -or -iname '*.ts' -or -iname '*.m2ts' -or -iname '*.mt'); do
        #/bin/ol-vid-up "$f" "$NAME" >> "$LOG"
